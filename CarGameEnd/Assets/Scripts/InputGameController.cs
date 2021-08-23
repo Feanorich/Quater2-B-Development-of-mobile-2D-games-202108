@@ -9,7 +9,9 @@ public class InputGameController : BaseController
         _view.Init(leftMove, rightMove, car.Speed);
     }
 
-    private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/endlessMove"};
+    //private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/endlessMove"};
+    //private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/MobileSingleStickControl1" };
+    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/MobileSingleStickControlF" };
     private BaseInputView _view;
 
     private BaseInputView LoadView()
