@@ -2,7 +2,7 @@
 using Tools;
 using UnityEngine;
 
-public class InputAcceleration : BaseInputView
+public class InputKeaboard : BaseInputView
 {
     public override void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
     {
@@ -17,16 +17,24 @@ public class InputAcceleration : BaseInputView
 
     private void Move()
     {
-        Debug.Log("мува");
+        Debug.Log("клава-мува");
 
-        var direction = Vector3.zero; 
-        direction.x = -Input.acceleration.y;
-        direction.z = Input.acceleration.x;
-        
+        var direction = Vector3.zero;
+        direction.x = -Input.GetAxis("Vertical");
+        direction.z = Input.GetAxis("Horizontal");
+
         if (direction.sqrMagnitude > 1)
             direction.Normalize();
+
+        Debug.Log(direction.z);
+        if (direction.z < 0.0f)
+        {
+            OnLeftMove(direction.sqrMagnitude / 20 * _speed);
+        }
+        else
+        {
+            OnRightMove(direction.sqrMagnitude / 20 * _speed);
+        }
         
-        OnRightMove(direction.sqrMagnitude / 20 * _speed);
     }
 }
-
