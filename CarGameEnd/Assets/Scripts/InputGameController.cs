@@ -10,6 +10,8 @@ public class InputGameController : BaseController
     }
 
     private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/endlessMove"};
+    //private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/MobileSingleStickControl1" };
+    //private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/MobileSingleStickControlF" };
     private BaseInputView _view;
 
     private BaseInputView LoadView()
