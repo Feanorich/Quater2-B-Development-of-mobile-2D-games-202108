@@ -17,14 +17,25 @@ public class InputAcceleration : BaseInputView
 
     private void Move()
     {
+        //Debug.Log("мува");
+
         var direction = Vector3.zero; 
-        direction.x = -Input.acceleration.y;
+        //direction.x = -Input.acceleration.y;
         direction.z = Input.acceleration.x;
-        
+
+        //Debug.Log($"acceleration.y {direction.x} --- acceleration.x {direction.z}");
+
         if (direction.sqrMagnitude > 1)
             direction.Normalize();
-        
-        OnRightMove(direction.sqrMagnitude / 20 * _speed);
+
+        var moveStep = direction.sqrMagnitude / 20 * _speed;
+
+        if (direction.z > 0)
+            OnRightMove(moveStep);
+        else if (direction.z < 0)
+            OnLeftMove(moveStep);
+
+        //OnRightMove(direction.sqrMagnitude / 20 * _speed);
     }
 }
 

@@ -118,6 +118,6 @@ namespace UnityStandardAssets.CrossPlatformInput
 			{
 				m_VerticalVirtualAxis.Remove();
 			}
-		}
+		}		
 	}
 }
