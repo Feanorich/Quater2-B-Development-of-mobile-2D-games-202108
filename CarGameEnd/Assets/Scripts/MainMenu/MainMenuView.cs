@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class MainMenuView : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private Button _buttonStart;
-        
+
     public void Init(UnityAction startGame)
     {
         _buttonStart.onClick.AddListener(startGame);

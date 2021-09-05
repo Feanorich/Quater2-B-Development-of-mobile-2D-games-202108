@@ -20,7 +20,7 @@ public class TapeBackgroundController : BaseController
     
     private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/background"};
     private TapeBackgroundView _view;
-    private readonly SubscriptionProperty<float> _diff;
+    private readonly IReadOnlySubscriptionProperty<float> _diff;
     private readonly IReadOnlySubscriptionProperty<float> _leftMove;
     private readonly IReadOnlySubscriptionProperty<float> _rightMove;
 

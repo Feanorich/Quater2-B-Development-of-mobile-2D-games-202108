@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputGameController : BaseController
 {
-    public InputGameController(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, Car car)
+    public InputGameController(IReadOnlySubscriptionProperty<float> leftMove, IReadOnlySubscriptionProperty<float> rightMove, ICar car)
     {
         _view = LoadView();
         _view.Init(leftMove, rightMove, car.Speed);

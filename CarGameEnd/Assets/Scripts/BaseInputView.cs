@@ -3,12 +3,12 @@ using UnityEngine;
 
 public abstract class BaseInputView : MonoBehaviour
 {
-    private SubscriptionProperty<float> _leftMove;
-    private SubscriptionProperty<float> _rightMove;
+    private IReadOnlySubscriptionProperty<float> _leftMove;
+    private IReadOnlySubscriptionProperty<float> _rightMove;
     
     protected float _speed;
     
-    public virtual void Init(SubscriptionProperty<float> leftMove, SubscriptionProperty<float> rightMove, float speed)
+    public virtual void Init(IReadOnlySubscriptionProperty<float> leftMove, IReadOnlySubscriptionProperty<float> rightMove, float speed)
     {
         _leftMove = leftMove;
         _rightMove = rightMove;

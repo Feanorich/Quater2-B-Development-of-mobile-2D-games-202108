@@ -1,4 +1,4 @@
-﻿public class Car
+﻿public class Car : ICar
 {
     public float Speed { get;}
 

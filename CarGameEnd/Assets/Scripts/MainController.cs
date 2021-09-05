@@ -1,25 +1,31 @@
 ﻿using Profile;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MainController : BaseController
 {
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
+    public MainController(Transform placeForUi, IProfilePlayer profilePlayer, 
+        List<ItemConfig> itemsConfig)
     {
         _profilePlayer = profilePlayer;
         _placeForUi = placeForUi;
+        _itemsConfig = itemsConfig;
+
         OnChangeGameState(_profilePlayer.CurrentState.Value);
         profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
     }
 
-    private MainMenuController _mainMenuController;
-    private GameController _gameController;
+    private IMainMenuController _mainMenuController;
+    private IGameController _gameController;
+    private IInventoryController _inventoryController;
     private readonly Transform _placeForUi;
-    private readonly ProfilePlayer _profilePlayer;
+    private readonly IProfilePlayer _profilePlayer;
+    private readonly List<ItemConfig> _itemsConfig;
 
     protected override void OnDispose()
     {
-        _mainMenuController?.Dispose();
-        _gameController?.Dispose();
+        AllClear();
+
         _profilePlayer.CurrentState.UnSubscriptionOnChange(OnChangeGameState);
         base.OnDispose();
     }
@@ -33,13 +39,22 @@ public class MainController : BaseController
                 _gameController?.Dispose();
                 break;
             case GameState.Game:
+                _inventoryController = new InventoryController(_itemsConfig);
+                _inventoryController.ShowInventory();
+
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 break;
             default:
-                _mainMenuController?.Dispose();
-                _gameController?.Dispose();
+                AllClear();
                 break;
         }
+    }
+
+    private void AllClear()
+    {
+        _inventoryController?.Dispose();
+        _mainMenuController?.Dispose();
+        _gameController?.Dispose();
     }
 }

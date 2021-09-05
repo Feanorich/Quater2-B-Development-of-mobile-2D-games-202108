@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class CarController : BaseController
+public class CarController : BaseController, ICarController
 {
-    private readonly ResourcePath _viewPath = new ResourcePath {PathResource = "Prefabs/Car"};
+    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Car" };
     private readonly CarView _carView;
 
     public CarController()
@@ -14,7 +14,7 @@ public class CarController : BaseController
     {
         var objView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath));
         AddGameObjects(objView);
-        
+
         return objView.GetComponent<CarView>();
     }
 
