@@ -1,8 +1,8 @@
 ﻿using Tools;
 
-public class GameController : BaseController
+public class GameController : BaseController, IGameController
 {
-    public GameController(ProfilePlayer profilePlayer)
+    public GameController(IProfilePlayer profilePlayer)
     {
         var leftMoveDiff = new SubscriptionProperty<float>();
         var rightMoveDiff = new SubscriptionProperty<float>();
